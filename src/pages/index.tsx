@@ -1,12 +1,11 @@
 import type { NextPage } from 'next'
+import { UserForm } from '../components/UserForm'
 import { HomeContainer } from '../styles/Home.styles'
 
 const Home: NextPage = () => {
   return (
     <HomeContainer>
-      <h1>
-        Hello World
-      </h1>
+      <UserForm />
     </HomeContainer>
   )
 }
