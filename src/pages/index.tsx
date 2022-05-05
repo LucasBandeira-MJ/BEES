@@ -1,8 +1,13 @@
 import type { NextPage } from 'next'
+import { HomeContainer } from '../styles/Home.styles'
 
 const Home: NextPage = () => {
   return (
-   <h1>Hello World!</h1>
+    <HomeContainer>
+      <h1>
+        Hello World
+      </h1>
+    </HomeContainer>
   )
 }
 
