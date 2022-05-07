@@ -1,4 +1,4 @@
-import { FormContainer } from "./UserForm.styles"
+import { FormContainer } from "./styles"
 
 export const UserForm = () => {
     return (
