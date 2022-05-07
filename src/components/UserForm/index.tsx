@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { SyntheticEvent, useEffect, useState } from "react"
 import { validateUser } from "../../utils/validateUser"
 import { FormContainer } from "./styles"
 
@@ -18,13 +18,18 @@ export const UserForm = () => {
         setUserName(name)
     }
 
+    const handleSubmit = (e: SyntheticEvent) => {
+        e.preventDefault()
+        console.log(e)
+    }
+
     useEffect(()=>{
         const userIsValid = validateUser(userName)
         setIsUserValid(userIsValid)
     },[userName])
 
     return (
-    <FormContainer>
+    <FormContainer onSubmit={handleSubmit}>
         <p>Please enter your full name below</p>
 
         <p>Only alphabetical characters are accepted</p>
