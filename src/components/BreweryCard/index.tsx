@@ -1,17 +1,18 @@
-import { BreweryCardContainer } from "./BreweryCard.styles"
+import { Tag } from "../Tag"
+import { BreweryCardContainer, TagContainer } from "./styles"
 
 interface BreweryCardProps {
     breweryInfo: {
-        address_2: null
-        address_3: null
+        address_2: string
+        address_3: string
         brewery_type: string
         city: string
         country: string
-        county_province: null
+        county_province: string
         created_at: string
         id: string
-        latitude: null
-        longitude: null
+        latitude: string
+        longitude: string
         name: string
         phone: string
         postal_code: string
@@ -29,16 +30,37 @@ export const BreweryCard = ({ breweryInfo }: BreweryCardProps) => {
         name, 
         city,
         state, 
-        street,
         country,
         brewery_type,
-        phone
+        street,
+        phone,
     } = breweryInfo
 
     return (
         <BreweryCardContainer>
             <strong>{name}</strong>
-            <p>{city}, {state} - {country}</p>
+            <p>
+                {street} <br />
+                {city}, {state} - {country}
+            </p>
+
+            <TagContainer>
+                <Tag variant='chart-square-bar'>
+                    Micro
+                </Tag>
+                
+                <Tag variant='location-marker'>
+                    46534
+                </Tag>
+                
+                <Tag variant='phone'>
+                    6308165790
+                </Tag>
+                
+                <Tag variant='plus-circle'>
+                    add more
+                </Tag>
+            </TagContainer>
         </BreweryCardContainer>
     )
 }

@@ -7,12 +7,22 @@ export const BreweryCardContainer = styled.div`
     background: var(--white);
     border: 1px solid var(--black);
     border-radius: 4px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    padding: 30px 22px;
+
+    p {
+        line-height: 26px;
+    }
 `
 
 export const TagContainer = styled.div`
     width: 100%;
     
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
 `
