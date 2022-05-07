@@ -7,7 +7,10 @@ export const HeaderComponent = () => {
 
     return (
         <HeaderContainer>
-            <div onClick={() => updateUser('')} >
+            <div
+                data-testid="go-back" 
+                onClick={() => updateUser('')}
+            >
                 <img src="images/arrow-circle-left.svg" alt="back arrow" />
                 <strong>Go Back</strong>
             </div>
