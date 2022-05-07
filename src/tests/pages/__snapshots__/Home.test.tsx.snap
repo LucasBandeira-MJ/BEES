@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home component should match the snapshot 1`] = `
+<div
+  className="sc-gsnTZi hMJYIl"
+>
+  <form
+    className="sc-bczRLJ ktGKjt"
+    onSubmit={[Function]}
+  >
+    <p>
+      Please enter your full name below
+    </p>
+    <p>
+      Only alphabetical characters are accepted
+    </p>
+    <input
+      onChange={[Function]}
+      placeholder="Full name"
+      required={true}
+      type="text"
+      value=""
+    />
+    <div
+      className="field-control"
+    >
+      <input
+        id="ageInput"
+        onChange={[Function]}
+        required={true}
+        type="checkbox"
+      />
+      <label
+        htmlFor="ageInput"
+      >
+        Are you older than 18 year old?
+      </label>
+    </div>
+    <button
+      disabled={true}
+      type="submit"
+    >
+      Enter
+    </button>
+  </form>
+</div>
+`;

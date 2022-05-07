@@ -1,63 +1,91 @@
 import { render, screen, fireEvent } from "@testing-library/react"
 
 import { UserForm } from '.'
+import { BreweriesContext } from "../../context/BreweriesContext"
 
 
 describe("UserForm component", () =>{
 
-    beforeEach(() => {
-        render( <UserForm /> )
-    })
+    describe("user validation methods", () => {
 
-    it("should be disabled when user is not an adult" , () => {
-        const input = screen.getByPlaceholderText('Full name')
-        const button = screen.getByRole('button', { name: /enter/i })
+        beforeEach(() => {
+            render( <UserForm /> )
+        })
 
-        fireEvent.change(input, {target: {value: 'John Joe'}})
+        it("should be disabled when user is not an adult" , () => {
+            const input = screen.getByPlaceholderText('Full name')
+            const button = screen.getByRole('button', { name: /enter/i })
 
-        expect(button).toBeDisabled()
-    })
-    
+            fireEvent.change(input, {target: {value: 'John Joe'}})
 
-    it("should be disabled when user doesn't input a full name" , () => {
-        const input = screen.getByPlaceholderText('Full name')
-        const checkbox = screen.getByRole('checkbox', { name: /are you older than 18 year old\?/i })
-        const button = screen.getByRole('button', { name: /enter/i })
-
-        fireEvent.change(input, {target: {value: 'John'}})
-        fireEvent.click(checkbox)
-
-        expect(button).toBeDisabled()
-    })
-
-    
-    
-
-    it("should be disabled when user inputs an invalid name" , () => {
-        const input = screen.getByPlaceholderText('Full name')
-        const checkbox = screen.getByRole('checkbox', { name: /are you older than 18 year old\?/i })
-        const button = screen.getByRole('button', { name: /enter/i })
+            expect(button).toBeDisabled()
+        })
         
-        fireEvent.click(checkbox)
 
-        fireEvent.change(input, {target: {value: 'John_Joe'}})
-        expect(button).toBeDisabled()
+        it("should be disabled when user doesn't input a full name" , () => {
+            const input = screen.getByPlaceholderText('Full name')
+            const checkbox = screen.getByRole('checkbox', { name: /are you older than 18 year old\?/i })
+            const button = screen.getByRole('button', { name: /enter/i })
 
-        fireEvent.change(input, {target: {value: 'John Joe 21'}})
-        expect(button).toBeDisabled()
+            fireEvent.change(input, {target: {value: 'John'}})
+            fireEvent.click(checkbox)
 
-        fireEvent.change(input, {target: {value: 'John@Joe'}})
-        expect(button).toBeDisabled()
+            expect(button).toBeDisabled()
+        })
+
+        
+        
+
+        it("should be disabled when user inputs an invalid name" , () => {
+            const input = screen.getByPlaceholderText('Full name')
+            const checkbox = screen.getByRole('checkbox', { name: /are you older than 18 year old\?/i })
+            const button = screen.getByRole('button', { name: /enter/i })
+            
+            fireEvent.click(checkbox)
+
+            fireEvent.change(input, {target: {value: 'John_Joe'}})
+            expect(button).toBeDisabled()
+
+            fireEvent.change(input, {target: {value: 'John Joe 21'}})
+            expect(button).toBeDisabled() 
+
+            fireEvent.change(input, {target: {value: 'John@Joe'}})
+            expect(button).toBeDisabled()
+        })
+
+        it("should be enabled when user is an adult and has given a full name" , () => {
+            const input = screen.getByPlaceholderText('Full name')
+            const checkbox = screen.getByRole('checkbox', { name: /are you older than 18 year old\?/i })
+            const button = screen.getByRole('button', { name: /enter/i })
+
+            fireEvent.change(input, {target: {value: 'John Joe'}})
+            fireEvent.click(checkbox)
+
+            expect(button).toBeEnabled()
+        })    
     })
 
-    it("should be enabled when user is an adult and has given a full name" , () => {
-        const input = screen.getByPlaceholderText('Full name')
-        const checkbox = screen.getByRole('checkbox', { name: /are you older than 18 year old\?/i })
-        const button = screen.getByRole('button', { name: /enter/i })
+    describe('context methods' , () => {
 
-        fireEvent.change(input, {target: {value: 'John Joe'}})
-        fireEvent.click(checkbox)
+        it('should update user when button is clicked' , () => {
+            const updateUser = jest.fn()
 
-        expect(button).toBeEnabled()
+            render (
+                <BreweriesContext.Provider value={{ updateUser } as any}>
+                    <UserForm />
+                </BreweriesContext.Provider>
+            )
+
+            const input = screen.getByPlaceholderText('Full name')
+            const checkbox = screen.getByRole('checkbox', { name: /are you older than 18 year old\?/i })
+            const button = screen.getByRole('button', { name: /enter/i })
+
+            fireEvent.change(input, {target: {value: 'John Joe'}})
+            fireEvent.click(checkbox)
+            fireEvent.click(button)
+
+            expect(updateUser).toHaveBeenCalled()
+        })
     })
+
 })

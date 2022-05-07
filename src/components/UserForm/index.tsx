@@ -1,8 +1,11 @@
-import { SyntheticEvent, useEffect, useState } from "react"
+import { SyntheticEvent, useContext, useEffect, useState } from "react"
+import { BreweriesContext } from "../../context/BreweriesContext"
 import { validateUser } from "../../utils/validateUser"
 import { FormContainer } from "./styles"
 
 export const UserForm = () => {
+    const { updateUser } = useContext(BreweriesContext)
+
     const [isAdult, setIsAdult] = useState<boolean>(false)
     const [userName, setUserName] = useState<string>('')
     const [isUserValid, setIsUserValid] = useState<boolean>(false)
@@ -20,7 +23,9 @@ export const UserForm = () => {
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault()
-        console.log(e)
+        
+        const trimedUser = userName.trim()
+        updateUser(trimedUser)
     }
 
     useEffect(()=>{
