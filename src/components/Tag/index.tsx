@@ -1,18 +1,47 @@
+import { SyntheticEvent, useRef, useState } from "react"
 import { TagContainer } from "./styles"
 
 interface TagProps {
     variant?: string
     children: React.ReactNode
+    onAddTag?: (newTag: string) => void
 }
 
-export const Tag = ({variant, children}: TagProps) => {
+export const Tag = ({variant, children, onAddTag}: TagProps) => {
+    const [isEditing, setIsEditing] = useState<boolean>(false)
+    const inputEl = useRef<HTMLInputElement>(null)
 
     if(!children) return <></>;
 
+    const handleClick = () => {
+        if(variant !== 'plus-circle') return
+        setIsEditing(true)
+    }
+
+    const handleSubmitTag = (e: SyntheticEvent) => {
+        e.preventDefault()
+        setIsEditing(false)
+
+        if(!inputEl.current?.value || !onAddTag) return 
+        onAddTag(inputEl.current?.value)
+    }
     return (
-        <TagContainer>
-            {variant && <img src={`images/${variant}.svg`} alt={variant} />}
-            <span>{children}</span>
+        <TagContainer onClick={handleClick}>
+            {
+                isEditing ? (
+                    <form onSubmit={handleSubmitTag}>
+                        <button type="submit">
+                            <img src="images/check-circle.svg" />
+                        </button>
+                        <input type="text" ref={inputEl} autoFocus />
+                    </form>
+                ) : (
+                    <>
+                        {variant && <img src={`images/${variant}.svg`} alt={variant} />}
+                        <span>{children}</span>
+                    </>
+                )
+            }
         </TagContainer>
     )
 }

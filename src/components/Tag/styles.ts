@@ -11,4 +11,22 @@ export const TagContainer = styled.div`
     justify-content: space-around;
     gap: 0.625rem;
     margin: 0.625rem;
+
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 0.625rem;
+        margin: 0.625rem;
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    button {
+        border: none;
+        background: transparent;
+    }
 `

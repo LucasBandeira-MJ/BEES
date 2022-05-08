@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { BreweryType } from "../../@types/breweryTypes"
 import { Tag } from "../Tag"
 import { BreweryCardContainer, TagContainer } from "./styles"
@@ -8,6 +9,11 @@ interface BreweryCardProps {
 }
 
 export const BreweryCard = ({ breweryInfo, onDeleteBrewery }: BreweryCardProps) => {
+    const [newTags, setNewTags] = useState<string[]>([])
+
+    const handleAddTag = (newTag:string) => {
+        setNewTags(tags => [...tags, newTag])
+    }
 
     const { 
         id,
@@ -42,13 +48,24 @@ export const BreweryCard = ({ breweryInfo, onDeleteBrewery }: BreweryCardProps) 
                 <Tag variant='phone'>
                     { phone }
                 </Tag>
+
+                {
+                    newTags && newTags.map(newTag => (
+                        <Tag>
+                            {newTag}
+                        </Tag>
+                    ))
+                }
                 
-                <Tag variant='plus-circle'>
+                <Tag 
+                    variant='plus-circle'
+                    onAddTag={handleAddTag}
+                >
                     add more
                 </Tag>
             </TagContainer>
 
-            <button onClick={() => onDeleteBrewery(id)}>
+            <button className="delete-btn" onClick={() => onDeleteBrewery(id)}>
                 <img src="images/trash.svg" alt="delete" />
             </button>
         </BreweryCardContainer>

@@ -25,7 +25,7 @@ export const BreweryCardContainer = styled.div`
         line-height: 26px;
     }
 
-    button {
+    .delete-btn {
         position: absolute;
         top: 0;
         right: 0;
