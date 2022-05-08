@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Breweries page should match the snapshot 1`] = `
+<div
+  className="sc-gsnTZi favrQF"
+>
+  <header
+    className="sc-bczRLJ haxtDN"
+  >
+    <div
+      data-testid="go-back"
+    >
+      <img
+        alt="back arrow"
+        src="images/arrow-circle-left.svg"
+      />
+      <strong>
+        Go Back
+      </strong>
+    </div>
+    <strong />
+  </header>
+  <main />
+</div>
+`;

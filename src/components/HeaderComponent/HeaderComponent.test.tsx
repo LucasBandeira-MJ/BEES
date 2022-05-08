@@ -4,9 +4,9 @@ import { render, screen, fireEvent } from "@testing-library/react"
 
 describe("HeaderComponent component", () => {
      it("should clean the user", () => {
-        const updateUser = jest.fn()
+        const clearUser = jest.fn()
          render(
-            <BreweriesContext.Provider value={{ updateUser } as any} >
+            <BreweriesContext.Provider value={{ clearUser } as any} >
                 <HeaderComponent />
             </BreweriesContext.Provider>
          )
@@ -15,6 +15,6 @@ describe("HeaderComponent component", () => {
          const element = screen.getByTestId('go-back')
          fireEvent.click(element)
 
-         expect(updateUser).toHaveBeenCalled()
+         expect(clearUser).toHaveBeenCalled()
      })
 })

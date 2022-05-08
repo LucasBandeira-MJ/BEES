@@ -1,6 +1,6 @@
 import { ErrorContainer } from "./styles"
 
-export const Error = () => {
+export const ErrorComponent = () => {
     return (
         <ErrorContainer>
             <h1>Oops, something went wrong...</h1>

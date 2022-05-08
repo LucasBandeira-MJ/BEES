@@ -7,10 +7,8 @@ export const ErrorContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    h1 {
-
-    }
+    gap: 2rem;
+    padding: 0 1rem;
 
     img {
         width: 90%;

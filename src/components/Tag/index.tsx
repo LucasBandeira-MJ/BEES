@@ -3,7 +3,7 @@ import { TagContainer } from "./styles"
 
 interface TagProps {
     variant?: string
-    children: React.ReactNode
+    children?: React.ReactNode
     onAddTag?: (newTag: string) => void
 }
 
@@ -26,10 +26,10 @@ export const Tag = ({variant, children, onAddTag}: TagProps) => {
         onAddTag(inputEl.current?.value)
     }
     return (
-        <TagContainer onClick={handleClick}>
+        <TagContainer data-testid="tag-element" onClick={handleClick}>
             {
                 isEditing ? (
-                    <form onSubmit={handleSubmitTag}>
+                    <form data-testid="form-el" onSubmit={handleSubmitTag}>
                         <button type="submit">
                             <img src="images/check-circle.svg" />
                         </button>

@@ -9,7 +9,8 @@ import axios from 'axios'
 import { BreweryCard } from "../../components/BreweryCard";
 import { BreweryType } from "../../@types/breweryTypes";
 import { Loader } from "../../components/Loader";
-import { Error } from "../../components/Error";
+import { ErrorComponent } from "../../components/ErrorComponent";
+import { MOCKED_BREWERIES } from "../../mocks/mockBreweries";
 
 const Breweries: NextPage = () => {
     const { user } = useContext(BreweriesContext)
@@ -41,6 +42,8 @@ const Breweries: NextPage = () => {
         }
 
         getBreweries()
+        
+        // setBreweries(MOCKED_BREWERIES) // Use if breweries aren't loading from axios call
     }, [])
 
     useEffect(() => {
@@ -52,7 +55,7 @@ const Breweries: NextPage = () => {
         <Container>
             <HeaderComponent />
             {
-                hasError ? <Error /> :
+                hasError ? <ErrorComponent /> :
                 isLoading ? (<Loader />) : (
                     <main>
                         { breweries.map((brewery) => (

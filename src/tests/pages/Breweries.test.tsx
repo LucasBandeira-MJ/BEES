@@ -5,21 +5,21 @@ import { useRouter } from 'next/router'
 import renderer from 'react-test-renderer'
 
 import { BreweriesContext } from "../../context/BreweriesContext"
-import Home from '../../pages'
+import Breweries from '../../pages/breweries'
 
 jest.mock('next/router')
 
-describe("Home page", () => {
+describe("Breweries page", () => {
 
     it('should match the snapshot', () => {
         const snapshot = renderer
-            .create(<Home USER_NAME={''} />)
+            .create(<Breweries />)
             .toJSON()
 
             expect(snapshot).toMatchSnapshot()
     })
 
-    it("should update user if USER_NAME is set in cookies and redirect user to breweries page", () => {
+    it("should redirect user to Home page if user is not set", () => {
         
         const useRouterMocked = mocked(useRouter) 
         const pushMocked = jest.fn()
@@ -28,14 +28,12 @@ describe("Home page", () => {
             push: pushMocked
         } as any)
 
-        const updateUser = jest.fn()
         render(
-            <BreweriesContext.Provider value={{updateUser} as any}>
-                <Home USER_NAME="John Joe" />
+            <BreweriesContext.Provider value={{ user: ''} as any}>
+                <Breweries />
             </BreweriesContext.Provider>
         )
 
         expect(pushMocked).toHaveBeenCalled()  
-        expect(updateUser).toHaveBeenCalled()
     })
 })
