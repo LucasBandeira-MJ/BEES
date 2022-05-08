@@ -8,12 +8,16 @@ import { Container } from "./styles";
 import axios from 'axios'
 import { BreweryCard } from "../../components/BreweryCard";
 import { BreweryType } from "../../@types/breweryTypes";
+import { Loader } from "../../components/Loader";
+import { Error } from "../../components/Error";
 
 const Breweries: NextPage = () => {
     const { user } = useContext(BreweriesContext)
     const router = useRouter()
 
     const [breweries, setBreweries] = useState<BreweryType[]>([])
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [hasError, setHasError] = useState<boolean>(false)
 
     const handleDeleteBrewery = (id: string) => {
         const filteredBreweries = breweries.filter(brewery => brewery.id !== id)
@@ -22,12 +26,18 @@ const Breweries: NextPage = () => {
     }
 
     useEffect(() => {
+        setIsLoading(true)
         const getBreweries = () => { 
+            console.log('is getting breweries')
             axios.get('https://api.openbrewerydb.org/breweries')
             .then(({ data }) => {
                 setBreweries(data)
+                setIsLoading(false)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                setHasError(true)
+            })
         }
 
         getBreweries()
@@ -41,15 +51,20 @@ const Breweries: NextPage = () => {
     return (
         <Container>
             <HeaderComponent />
-            <main>
-                { breweries.map((brewery) => (
-                    <BreweryCard 
-                        key={brewery.id} 
-                        onDeleteBrewery={handleDeleteBrewery}
-                        breweryInfo={brewery} 
-                    />
-                )) } 
-            </main>
+            {
+                hasError ? <Error /> :
+                isLoading ? (<Loader />) : (
+                    <main>
+                        { breweries.map((brewery) => (
+                            <BreweryCard 
+                                key={brewery.id} 
+                                onDeleteBrewery={handleDeleteBrewery}
+                                breweryInfo={brewery} 
+                            />
+                        )) } 
+                    </main>
+                )
+            }
         </Container>
     )
 }
