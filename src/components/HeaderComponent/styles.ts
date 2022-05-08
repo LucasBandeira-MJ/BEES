@@ -11,6 +11,11 @@ export const HeaderContainer = styled.header`
 
     background: var(--yellow);
 
+    strong {
+        font-size: 1.875rem;
+        font-weight: 400;
+    }
+
     div {
         display: flex;
         align-items: center;

@@ -7,15 +7,22 @@ import { Container } from "./styles";
 
 import axios from 'axios'
 import { BreweryCard } from "../../components/BreweryCard";
+import { BreweryType } from "../../@types/breweryTypes";
 
 const Breweries: NextPage = () => {
     const { user } = useContext(BreweriesContext)
     const router = useRouter()
 
-    const [breweries, setBreweries] = useState([])
+    const [breweries, setBreweries] = useState<BreweryType[]>([])
+
+    const handleDeleteBrewery = (id: string) => {
+        const filteredBreweries = breweries.filter(brewery => brewery.id !== id)
+
+        setBreweries(filteredBreweries)
+    }
 
     useEffect(() => {
-        const getBreweries = () => {
+        const getBreweries = () => { 
             axios.get('https://api.openbrewerydb.org/breweries')
             .then(({ data }) => {
                 setBreweries(data)
@@ -35,8 +42,12 @@ const Breweries: NextPage = () => {
         <Container>
             <HeaderComponent />
             <main>
-                { breweries.map((brewery, index) => (
-                    <BreweryCard key={index} breweryInfo={brewery} />
+                { breweries.map((brewery) => (
+                    <BreweryCard 
+                        key={brewery.id} 
+                        onDeleteBrewery={handleDeleteBrewery}
+                        breweryInfo={brewery} 
+                    />
                 )) } 
             </main>
         </Container>

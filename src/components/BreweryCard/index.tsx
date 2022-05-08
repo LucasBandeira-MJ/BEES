@@ -1,36 +1,21 @@
+import { BreweryType } from "../../@types/breweryTypes"
 import { Tag } from "../Tag"
 import { BreweryCardContainer, TagContainer } from "./styles"
 
 interface BreweryCardProps {
-    breweryInfo: {
-        address_2: string
-        address_3: string
-        brewery_type: string
-        city: string
-        country: string
-        county_province: string
-        created_at: string
-        id: string
-        latitude: string
-        longitude: string
-        name: string
-        phone: string
-        postal_code: string
-        state: string
-        street: string
-        updated_at: string
-        website_url: string
-    }
+    breweryInfo: BreweryType
+    onDeleteBrewery: (id: string) => void
 }
 
-export const BreweryCard = ({ breweryInfo }: BreweryCardProps) => {
-    console.log(breweryInfo)
+export const BreweryCard = ({ breweryInfo, onDeleteBrewery }: BreweryCardProps) => {
 
     const { 
+        id,
         name, 
         city,
         state, 
         country,
+        postal_code,
         brewery_type,
         street,
         phone,
@@ -39,6 +24,7 @@ export const BreweryCard = ({ breweryInfo }: BreweryCardProps) => {
     return (
         <BreweryCardContainer>
             <strong>{name}</strong>
+
             <p>
                 {street} <br />
                 {city}, {state} - {country}
@@ -46,21 +32,25 @@ export const BreweryCard = ({ breweryInfo }: BreweryCardProps) => {
 
             <TagContainer>
                 <Tag variant='chart-square-bar'>
-                    Micro
+                    { brewery_type }
                 </Tag>
                 
                 <Tag variant='location-marker'>
-                    46534
+                    { postal_code }
                 </Tag>
                 
                 <Tag variant='phone'>
-                    6308165790
+                    { phone }
                 </Tag>
                 
                 <Tag variant='plus-circle'>
                     add more
                 </Tag>
             </TagContainer>
+
+            <button onClick={() => onDeleteBrewery(id)}>
+                <img src="images/trash.svg" alt="delete" />
+            </button>
         </BreweryCardContainer>
     )
 }
