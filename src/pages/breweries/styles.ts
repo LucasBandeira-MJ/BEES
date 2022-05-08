@@ -19,5 +19,9 @@ export const Container = styled.div`
         overflow: hidden scroll;
 
         padding: 6.125rem 0;
+
+        @media (max-width: 600px) {
+            height: calc(100vh - 7rem);
+        }
     }
 `

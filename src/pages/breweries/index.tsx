@@ -27,23 +27,21 @@ const Breweries: NextPage = () => {
     }
 
     useEffect(() => {
-        setIsLoading(true)
-        const getBreweries = () => { 
-            console.log('is getting breweries')
-            axios.get('https://api.openbrewerydb.org/breweries')
-            .then(({ data }) => {
-                setBreweries(data)
-                setIsLoading(false)
-            })
-            .catch(err => {
-                console.log(err)
-                setHasError(true)
-            })
-        }
+        // setIsLoading(true)
+        // const getBreweries = () => { 
+        //     axios.get('https://api.openbrewerydb.org/breweries')
+        //     .then(({ data }) => {
+        //         setBreweries(data)
+        //         setIsLoading(false)
+        //     })
+        //     .catch(err => {
+        //         console.log(err)
+        //         setHasError(true)
+        //     })
+        // }
 
-        getBreweries()
-        
-        // setBreweries(MOCKED_BREWERIES) // Use if breweries aren't loading from axios call
+        // getBreweries()
+        setBreweries(MOCKED_BREWERIES) // Use if breweries aren't loading from axios call
     }, [])
 
     useEffect(() => {

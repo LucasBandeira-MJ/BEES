@@ -13,7 +13,7 @@ export const HomeContainer = styled.div`
     &::after {
         content: url('images/bee.png');
         position: absolute;
-        left: 29px;
-        bottom: 15px;
+        left: 1.813rem;
+        bottom: 0.938rem;
     }
 `

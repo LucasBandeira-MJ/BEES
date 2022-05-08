@@ -12,6 +12,8 @@ export const TagContainer = styled.div`
     gap: 0.625rem;
     margin: 0.625rem;
 
+    cursor: default;
+
     form {
         display: flex;
         align-items: center;
@@ -28,5 +30,9 @@ export const TagContainer = styled.div`
     button {
         border: none;
         background: transparent;
+    }
+
+    &.editable {
+        cursor: pointer;
     }
 `

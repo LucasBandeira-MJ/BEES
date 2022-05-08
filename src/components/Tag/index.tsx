@@ -10,11 +10,12 @@ interface TagProps {
 export const Tag = ({variant, children, onAddTag}: TagProps) => {
     const [isEditing, setIsEditing] = useState<boolean>(false)
     const inputEl = useRef<HTMLInputElement>(null)
+    const isEditable = variant === 'plus-circle'
 
     if(!children) return <></>;
 
     const handleClick = () => {
-        if(variant !== 'plus-circle') return
+        if(!isEditable) return
         setIsEditing(true)
     }
 
@@ -26,7 +27,11 @@ export const Tag = ({variant, children, onAddTag}: TagProps) => {
         onAddTag(inputEl.current?.value)
     }
     return (
-        <TagContainer data-testid="tag-element" onClick={handleClick}>
+        <TagContainer 
+            data-testid="tag-element" 
+            onClick={handleClick}
+            className={`${isEditable && 'editable'}`}
+        >
             {
                 isEditing ? (
                     <form data-testid="form-el" onSubmit={handleSubmitTag}>

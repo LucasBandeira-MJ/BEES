@@ -44,4 +44,8 @@ export const TagContainer = styled.div`
     flex-wrap: wrap;
 
     overflow-y: auto;
+
+    ::-webkit-scrollbar {
+        width: 3px;
+    }
 `

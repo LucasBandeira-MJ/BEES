@@ -9,6 +9,13 @@ export const HeaderContainer = styled.header`
     justify-content: space-between;
     padding: 0 2.5rem;
 
+    @media (max-width: 600px) {
+        flex-direction: column;
+        gap: 0.5rem;
+        height: 7rem;
+        padding: 0.5rem 0;
+    }
+
     background: var(--yellow);
 
     strong {
@@ -21,5 +28,13 @@ export const HeaderContainer = styled.header`
         align-items: center;
         gap: 1.25rem;
         cursor: pointer;
+
+        @media (max-width: 600px) {
+            order: 2;
+
+            img {
+                width: 3rem;
+            }
+        }
     }
 `
