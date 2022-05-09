@@ -2,10 +2,10 @@
 
 exports[`Breweries page should match the snapshot 1`] = `
 <div
-  className="sc-gsnTZi favrQF"
+  className="sc-gsnTZi hXPuck"
 >
   <header
-    className="sc-bczRLJ haxtDN"
+    className="sc-bczRLJ icSCYJ"
   >
     <div
       data-testid="go-back"

@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Home component should match the snapshot 1`] = `
+exports[`Home page should match the snapshot 1`] = `
 <div
-  className="sc-gsnTZi hMJYIl"
+  className="sc-gsnTZi jgLkeL"
 >
   <form
     className="sc-bczRLJ ktGKjt"
