@@ -1,4 +1,4 @@
-# BEES Front-end Test
+# BEES
 This project was created with `yarn create next-app --typescript` in order to initialize the project with typescript configurations.
 
 ## Running the app
